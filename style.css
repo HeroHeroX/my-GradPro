@@ -121,7 +121,6 @@ body{
     width: 100%;
     background-color: var(--bs-light); /* Màu nền sáng cho thanh tìm kiếm */
     padding: 15px;
-    border-radius: 25px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
     transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển động mượt mà */
 }
@@ -204,7 +203,7 @@ body{
 }
 
 .element-title a:hover {
-    color: #6c757d;
+    color: #9aa1a7;
 }
 
 .btn-left .btn-link {
@@ -213,7 +212,7 @@ body{
 }
 
 .btn-left .btn-link:hover {
-    color: #0056b3;
+    color: #9aa1a7;
 }
 
 .swiper-pagination-bullet {
@@ -226,13 +225,24 @@ body{
     opacity: 1;
 }
 
-.icon-arrow svg {
-    cursor: pointer;
-    fill: #6c757d;
-    transition: fill 0.3s ease;
+.swiper-button-next, .swiper-button-prev {
+    color: #6c757d; /* Màu sắc của mũi tên */
+    border-radius: 50%;
+    padding: 10px;
+    position: absolute;
+    top: 110%;
+    transform: translateY(-50%);
+    z-index: 10;
 }
 
-.icon-arrow svg:hover {
-    fill: #0056b3;
+.swiper-button-next {
+    right: 10px; /* Vị trí mũi tên bên phải */
 }
 
+.swiper-button-prev {
+    left: 10px; /* Vị trí mũi tên bên trái */
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    color: #9aa1a7; /* Màu nền khi hover */
+}

@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
         spaceBetween: 70,  // Khoảng cách giữa các hình
         loop: true,
         navigation: {
-            nextEl: ".icon-arrow-right",
-            prevEl: ".icon-arrow-left",
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
         pagination: {
             el: ".swiper-pagination",
