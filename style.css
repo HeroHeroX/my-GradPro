@@ -39,6 +39,57 @@ body{
     letter-spacing: 0.03rem;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
+                            /* SMOOTH SCROLLSCROLL  */
+/* Trạng thái ban đầu: thu nhỏ và ẩn */
+.zoom {
+  opacity: 0;
+  transform: scale(0.5); /* Thu nhỏ */
+  animation: zoomEffect 0.8s ease-out forwards; /* Kích hoạt animation */
+}
+
+/* Định nghĩa animation zoom */
+@keyframes zoomEffect {
+  0% {
+    opacity: 0;
+    transform: scale(0.5); /* Bắt đầu thu nhỏ */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* Kết thúc phóng to */
+  }
+}
+
+/* Trạng thái ban đầu: ẩn và dịch chuyển từ trái */
+.from-left {
+  opacity: 0;
+  transform: translateX(-20px); /* Dịch từ trái */
+  transition: all 0.5s ease-out; /* Hiệu ứng mượt */
+}
+
+/* Khi xuất hiện: Vị trí gốc */
+.from-left.show {
+  opacity: 1;
+  transform: translateX(0); /* Về vị trí gốc */
+}
+
+/* Trạng thái ban đầu: ẩn và thu nhỏ */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.5); /* Thu nhỏ */
+  transition: all 0.5s ease-out; /* Hiệu ứng mượt */
+}
+
+/* Khi xuất hiện: Kích thước gốc */
+.zoom-in.show {
+  opacity: 1;
+  transform: scale(1); /* Trả về kích thước gốc */
+}
+
+                          /* SMOOTH SCROLLSCROLL END */
                             /* NAVBAR DES */
 
 .logo {
@@ -224,41 +275,6 @@ body{
 .swiper-pagination-bullet-active {
     background-color: #0056b3 !important;
     opacity: 1;
-}
-
-.swiper-button-next, .swiper-button-prev {
-    color: #6c757d; /* Màu sắc của mũi tên */
-    border-radius: 50%;
-    padding: 10px;
-
-    position: absolute;
-    top: 110%;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-
-@media (max-width: 768px) {
-    .swiper-button-next, .swiper-button-prev {
-        display: none;
-    }
-}
-
-@media (max-width: 1024px) {
-    .swiper-button-next, .swiper-button-prev {
-        top: 120%;
-    }
-}
-
-.swiper-button-next {
-    right: 10px; /* Vị trí mũi tên bên phải */
-}
-
-.swiper-button-prev {
-    left: 10px; /* Vị trí mũi tên bên trái */
-}
-
-.swiper-button-next:hover, .swiper-button-prev:hover {
-    color: #9aa1a7; /* Màu nền khi hover */
 }
 
 .swiper-container {

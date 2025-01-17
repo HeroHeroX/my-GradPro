@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clickable: true,
         },
         autoplay: {
-            delay: 5000,
+            delay: 3000,
             disableOnInteraction: false,
         },
         breakpoints: {
@@ -40,4 +40,38 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-  
+
+// Kiểm tra nếu phần tử nằm trong viewport
+function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Thêm class "show" khi phần tử vào viewport
+function handleScroll() {
+    const fromLeftElements = document.querySelectorAll('.from-left');
+    const zoomInElements = document.querySelectorAll('.zoom-in');
+
+    fromLeftElements.forEach((el) => {
+        if (isInViewport(el)) {
+            el.classList.add('show');
+        }
+    });
+
+    zoomInElements.forEach((el) => {
+        if (isInViewport(el)) {
+            el.classList.add('show');
+        }
+    });
+}
+
+// Lắng nghe sự kiện scroll
+window.addEventListener('scroll', handleScroll);
+
+// Gọi hàm ngay khi tải trang
+handleScroll();
