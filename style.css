@@ -149,7 +149,7 @@ html{
   }
  
 /* Media Queries để làm website responsive */
-@media (max-width: 768px) {
+@media (max-width: 200px) {
     /* Làm thanh tìm kiếm nhỏ gọn hơn trên màn hình nhỏ */
     #search-container {
         width: 100%;
@@ -162,7 +162,7 @@ html{
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 200px) {
     .navbar {
         padding: 10px 0; /* Giảm padding để navbar gọn gàng hơn trên màn hình nhỏ */
     }
@@ -217,77 +217,130 @@ html{
                                 /* NAVBAR END */
 
                                 /* SWIPER BILLBOARD */
+/* Định dạng cơ bản */
 #billboard {
-    background-color: #f8f9fa; /* Màu nền sáng */
+  background-color: #f8f9fa; /* Màu nền sáng */
 }
 
 .section-title {
-    font-family: var(--heading-font); /* Sử dụng font chữ chính */
-    font-size: 70px;
-    color: #333; /* Màu chữ chính */
-    margin-bottom: 30px;
+  font-family: var(--heading-font); /* Sử dụng font chữ chính */
+  font-size: 70px;
+  color: #333; /* Màu chữ chính */
+  margin-bottom: 30px;
 }
 
 .banner-item {
-    text-align: center;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .banner-item:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .image-holder img {
-    border-radius: 10px;
-    max-width: 100%;
-    height: auto;
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
 }
 
 .banner-content {
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .element-title a {
-    text-decoration: none;
-    color: #51565b;
-    font-weight: bold;
-    font-family: var(--heading-font);
+  text-decoration: none;
+  color: #51565b;
+  font-weight: bold;
+  font-family: var(--heading-font);
 }
 
 .element-title a:hover {
-    color: #9aa1a7;
+  color: #9aa1a7;
 }
 
 .btn-left .btn-link {
-    color: #6c757d;
-    font-weight: bold;
-    font-family: var(--heading-font);
+  color: #6c757d;
+  font-weight: bold;
+  font-family: var(--heading-font);
 }
 
 .btn-left .btn-link:hover {
-    color: #9aa1a7;
+  color: #9aa1a7;
 }
 
 .swiper-pagination-bullet {
-    opacity: 0.7;
-    display: none !important;
+  opacity: 0.7;
+  display: none !important;
 }
 
 .swiper-pagination-bullet-active {
-    background-color: #0056b3 !important;
-    opacity: 1;
+  background-color: #0056b3 !important;
+  opacity: 1;
 }
 
 .swiper-container {
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-}                         /* SWIPER BILLBOARD END */
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* Responsive CSS cho iPhone X */
+@media screen and (max-width: 375px) {
+  .section-title {
+      font-size: 36px; /* Giảm kích thước tiêu đề */
+      margin-bottom: 20px;
+  }
+
+  .banner-item {
+      margin-bottom: 20px; /* Khoảng cách giữa các item */
+  }
+
+  .banner-content {
+      padding: 0.5rem; /* Giảm padding nội dung */
+      font-size: 14px; /* Kích thước chữ nhỏ hơn */
+  }
+
+  .element-title a {
+      font-size: 16px; /* Thu nhỏ kích thước chữ của tiêu đề */
+  }
+
+  .btn-left .btn-link {
+      font-size: 14px; /* Giảm kích thước nút */
+  }
+
+  .swiper-container {
+      width: 100%;
+      border-radius: 5px;
+  }
+
+  .image-holder img {
+      border-radius: 5px; /* Giảm bo góc cho ảnh */
+  }
+}
+
+/* Định dạng cụ thể cho màn hình ngang iPhone X */
+@media screen and (max-width: 812px) and (orientation: landscape) {
+  .section-title {
+      font-size: 48px; /* Điều chỉnh kích thước tiêu đề */
+      margin-bottom: 15px;
+  }
+
+  .banner-content {
+      font-size: 16px; /* Kích thước chữ lớn hơn khi nằm ngang */
+  }
+
+  .swiper-container {
+      width: 90%;
+      margin: 0 auto; /* Căn giữa container */
+  }
+}
+                            /* SWIPER BILLBOARD END */
 
                                 /* FEATURE START */    
 
@@ -314,6 +367,7 @@ html{
   font-family: var(--heading-font);
   font-size: 24px;
   color: var(--bs-secondary);
+  margin-bottom: -15px;
 }
 
 .image-holder {
@@ -365,7 +419,7 @@ html{
 /* Tablet (Screen width >= 600px and < 992px) */
 @media (min-width: 600px) and (max-width: 991px) {
   .collection {
-    font-size: 20px; /* Giảm kích thước chữ cho tablet */
+    font-size: 30px; /* Giảm kích thước chữ cho tablet */
   }
 
   .product-button {
@@ -406,6 +460,7 @@ html{
                             /* SHOP FOR COLLECTION END */
 
                           /* CLASSIC SEASON COLLECTION */
+/* Định dạng chính */
 .season-collection {
   font-family: var(--heading-font);
   font-size: 15px;
@@ -420,6 +475,36 @@ html{
   color: #333; /* Màu chữ chính */
   font-size: 40px;
 }
+
+/* Responsive CSS cho iPhone X */
+@media screen and (max-width: 375px) {
+  .season-collection {
+    font-size: 13px; /* Giảm kích thước font chữ */
+    margin-top: 50px; /* Giảm khoảng cách trên */
+    text-align: center; /* Căn giữa nội dung cho màn hình nhỏ */
+  }
+
+  .season-collection h3 {
+    font-size: 28px; /* Giảm kích thước tiêu đề */
+    line-height: 1.2; /* Điều chỉnh khoảng cách dòng */
+    margin-bottom: 20px; /* Thêm khoảng cách dưới */
+  }
+}
+
+/* Định dạng cụ thể cho màn hình ngang iPhone X */
+@media screen and (max-width: 812px) and (orientation: landscape) {
+  .season-collection {
+    font-size: 14px; /* Giảm kích thước font */
+    margin-top: 40px; /* Giảm khoảng cách trên */
+    text-align: center; /* Đảm bảo nội dung được căn giữa */
+  }
+
+  .season-collection h3 {
+    font-size: 32px; /* Kích thước tiêu đề phù hợp hơn */
+    margin-bottom: 15px;
+  }
+}
+
                           /* SEASON COKLECTION END  */
 
                             /* FOOTER START */

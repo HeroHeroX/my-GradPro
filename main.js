@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             disableOnInteraction: false,
         },
         breakpoints: {
-            480: {
+            200: {
                 slidesPerView: 1,  // Màn hình nhỏ, chỉ 1 hình
             },
             768: {
