@@ -35,12 +35,8 @@ body {
     --bs-link-hover-color-rgb: 17, 17, 17;
 }
 
-body{
-    letter-spacing: 0.03rem;
-}
-
 html{
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
                             /* SMOOTH SCROLLSCROLL  */
@@ -89,8 +85,17 @@ html{
   transform: scale(1); /* Trả về kích thước gốc */
 }
 
+/* Khi màn hình nhỏ hơn 768px, tắt hiệu ứng animation */
+@media (max-width: 768px) {
+  .from-left, .zoom-in {
+      opacity: 1 !important; /* Giữ nguyên độ trong suốt */
+      transform: none !important; /* Không dịch chuyển và không thu nhỏ */
+      transition: none !important; /* Tắt hiệu ứng chuyển động */
+  }
+}
                           /* SMOOTH SCROLLSCROLL END */
-                            /* NAVBAR DES */
+                            
+                          /* NAVBAR DES */
 
 .logo {
     width: 150px;   
@@ -400,6 +405,79 @@ html{
 
                             /* SHOP FOR COLLECTION END */
 
-                            /* FOOTER START */
+                          /* CLASSIC SEASON COLLECTION */
+.season-collection {
+  font-family: var(--heading-font);
+  font-size: 15px;
+  color: var(--bs-secondary);
+  margin-top: 70px;
+  text-align: left;
+}
 
-  
+.season-collection h3 {
+  position: relative;
+  font-family: var(--heading-font); /* Sử dụng font chữ chính */
+  color: #333; /* Màu chữ chính */
+  font-size: 40px;
+}
+                          /* SEASON COKLECTION END  */
+
+                            /* FOOTER START */
+.footer-logo {
+  width: 200px;  /* Điều chỉnh chiều rộng logo */
+  height: auto;  /* Giữ tỷ lệ gốc của logo */
+}
+
+/* Cấu hình ban đầu cho liên kết */
+.footer-menu .item-anchor {
+  text-decoration: none; /* Bỏ gạch chân mặc định */
+  color: #333; /* Màu liên kết mặc định */
+  position: relative; /* Để có thể sử dụng ::after */
+}
+
+/* Tạo hiệu ứng gạch chân từ trái sang phải */
+.footer-menu .item-anchor::after {
+  content: ""; /* Nội dung rỗng cho pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px; /* Độ dày của gạch chân */
+  background-color: var(--bs-secondary); /* Màu gạch chân */
+  transition: width 0.3s ease; /* Thời gian gạch chân xuất hiện */
+}
+
+/* Khi hover, gạch chân sẽ xuất hiện từ trái sang phải */
+.footer-menu .item-anchor:hover::after {
+  width: 100%; /* Kích thước của gạch chân khi hover */
+}
+
+                        /* BACK TO TOP BUTTON */
+
+
+/* Kiểu dáng cho nút quay lại đầu trang */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  background-color: var(--bs-secondary); /* Màu nền */
+  color: #fff; /* Màu chữ */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50%;
+  font-size: 15px;
+  cursor: pointer;
+  display: none; /* Ban đầu ẩn */
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng khi hover */
+.back-to-top:hover {
+  background-color: var(--bs-gray);
+}
+
+/* Hiển thị nút khi cuộn xuống */
+.show {
+  display: block;
+}
+

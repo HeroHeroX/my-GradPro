@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clickable: true,
         },
         autoplay: {
-            delay: 3000,
+            delay: 2000,
             disableOnInteraction: false,
         },
         breakpoints: {
@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+                            //SCROLL ANIMATION
 
 // Kiểm tra nếu phần tử nằm trong viewport
 function isInViewport(el) {
@@ -75,3 +76,25 @@ window.addEventListener('scroll', handleScroll);
 
 // Gọi hàm ngay khi tải trang
 handleScroll();
+
+                            //BACK TO TOP BUTTON        
+
+// Lấy nút bấm
+const backToTopButton = document.getElementById('backToTop');
+
+// Kiểm tra khi người dùng cuộn xuống trang
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {  // Hiển thị nút khi cuộn xuống 300px
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+});
+
+// Khi nhấn vào nút, cuộn lên đầu trang
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'  // Cuộn mượt mà
+    });
+});
