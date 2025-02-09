@@ -31,10 +31,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav justify-content-center flex-grow-1 gap-1 gap-lg-6 pe-3">
-                    <li class="nav-item"><a class="nav-link" href="#">Men</a></li>
+                    <li class="nav-item"><a class="nav-link" href="men.html">Men</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Women</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Accessories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#footer-logo">About Us</a></li>
                 </ul>
                 <form class="d-flex align-items-center" role="search">
                     <button class="btn btn-outline-custom me-1" type="button" id="search-icon" aria-label="Search">
@@ -60,7 +60,16 @@
     </div>
 
                             <!-- NAVBAR END-->
-    
+    <section id="video" class="zoom">
+      <div class="container-fluid p-0">
+        <video autoplay loop muted playsinline class="w-100">
+            <source src="video/fashion.mp4" type="video/mp4">
+        </video>
+    </div>    
+    </section>    
+
+
+
                             <!-- BILLBOARD -->
     <section id="billboard" class="bg-light py-5 zoom">
         <div class="container">
@@ -243,7 +252,7 @@
                                 </a>
                                 <div class="overlay"></div> <!-- Lớp phủ mờ -->
                                 <div class="product-button">
-                                    <a href="index.html" class="btn btn-common text-uppercase">Shop for men</a>
+                                    <a href="men.html" class="btn btn-common text-uppercase">Shop for men</a>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +341,7 @@
       <div class="row d-flex flex-wrap justify-content-between py-5">
         <div class="col-md-3 col-sm-6">
           <div class="footer-menu footer-menu-001">
-            <div class="footer-intro mb-4">
+            <div class="footer-intro mb-4"  id="footer-logo">
               <a href="index.html">
                 <img src="images/logo.png" alt="logo" class="footer-logo">
               </a>

@@ -216,6 +216,15 @@ html{
 
                                 /* NAVBAR END */
 
+#video, #billboard {
+    margin: 0;
+    padding: 0;
+}
+
+#video video {
+    display: block;
+    width: 100%;
+}
                                 /* SWIPER BILLBOARD */
 /* Định dạng cơ bản */
 #billboard {
