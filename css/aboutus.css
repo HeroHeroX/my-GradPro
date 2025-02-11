@@ -115,6 +115,8 @@ body {
     color: white;
 }
 
+                                        /* ABOUT US */
+
 .about-container {
     max-width: 1200px;
     margin: auto;
@@ -123,13 +125,13 @@ body {
 }
 .about-title {
     font-family: var(--heading-font);
-    font-size: 36px;
+    font-size: 48px;
     font-weight: var(--heading-font-weight);
     color: var(--heading-color);
     margin-bottom: 20px;
 }
 .about-text {
-    font-size: 18px;
+    font-size: 24px;
     line-height: 1.6;
     max-width: 800px;
     margin: auto;
@@ -162,10 +164,22 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .value-item i {
-    font-size: 32px;
+    font-size: 36px;
     color: var(--bs-primary);
     margin-bottom: 10px;
 }
+.value-item h3 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: var(--heading-font);
+}
+
+.value-item p {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
 .team-section, .testimonials {
     margin-top: 80px;
 }
@@ -181,9 +195,10 @@ body {
     text-align: center;
     padding: 20px;
     border-radius: 15px;
-    background: #f9f9f9;
+    background: var(--bs-light);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    font-size: 20px;
 }
 .team-member:hover, .testimonial-item:hover {
     transform: translateY(-8px);
@@ -197,9 +212,11 @@ body {
     border-radius: 10px;
 }
 .team-member h3, .testimonial-item h4 {
-    font-size: 20px;
-    color: #111;
+    font-size: 24px;
+    color: var(--bs-secondary);
     margin-bottom: 8px;
+    font-family: var(--heading-font);
+    font-weight: bold;
 }
 
 .fade-in {

@@ -42,40 +42,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             //SCROLL ANIMATION
 
-// Kiểm tra nếu phần tử nằm trong viewport
-function isInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const fadeElements = document.querySelectorAll(".fade-in");
 
-// Thêm class "show" khi phần tử vào viewport
-function handleScroll() {
-    const fromLeftElements = document.querySelectorAll('.from-left');
-    const zoomInElements = document.querySelectorAll('.zoom-in');
+    function fadeInOnScroll() {
+        fadeElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.9) {
+                element.classList.add("visible");
+            }
+        });
+    }
 
-    fromLeftElements.forEach((el) => {
-        if (isInViewport(el)) {
-            el.classList.add('show');
-        }
-    });
-
-    zoomInElements.forEach((el) => {
-        if (isInViewport(el)) {
-            el.classList.add('show');
-        }
-    });
-}
-
-// Lắng nghe sự kiện scroll
-window.addEventListener('scroll', handleScroll);
-
-// Gọi hàm ngay khi tải trang
-handleScroll();
+    window.addEventListener("scroll", fadeInOnScroll);
+    fadeInOnScroll(); // Gọi ngay khi tải trang để hiện các phần tử trong viewport
+});
 
                             //BACK TO TOP BUTTON        
 

@@ -59,39 +59,14 @@ html{
   }
 }
 
-/* Trạng thái ban đầu: ẩn và dịch chuyển từ trái */
-.from-left {
+.fade-in {
   opacity: 0;
-  transform: translateX(-20px); /* Dịch từ trái */
-  transition: all 0.5s ease-out; /* Hiệu ứng mượt */
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-
-/* Khi xuất hiện: Vị trí gốc */
-.from-left.show {
+.fade-in.visible {
   opacity: 1;
-  transform: translateX(0); /* Về vị trí gốc */
-}
-
-/* Trạng thái ban đầu: ẩn và thu nhỏ */
-.zoom-in {
-  opacity: 0;
-  transform: scale(0.5); /* Thu nhỏ */
-  transition: all 0.5s ease-out; /* Hiệu ứng mượt */
-}
-
-/* Khi xuất hiện: Kích thước gốc */
-.zoom-in.show {
-  opacity: 1;
-  transform: scale(1); /* Trả về kích thước gốc */
-}
-
-/* Khi màn hình nhỏ hơn 768px, tắt hiệu ứng animation */
-@media (max-width: 768px) {
-  .from-left, .zoom-in {
-      opacity: 1 !important; /* Giữ nguyên độ trong suốt */
-      transform: none !important; /* Không dịch chuyển và không thu nhỏ */
-      transition: none !important; /* Tắt hiệu ứng chuyển động */
-  }
+  transform: translateY(0);
 }
                           /* SMOOTH SCROLLSCROLL END */
                             
