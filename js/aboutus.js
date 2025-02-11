@@ -8,24 +8,21 @@ document.getElementById("search-icon").addEventListener("click", function() {
     }
 });
 
-//ANIMATION
-// Hiệu ứng khi cuộn trang
 document.addEventListener("DOMContentLoaded", function () {
-    const productItems = document.querySelectorAll(".product-item");
+    const fadeElements = document.querySelectorAll(".fade-in");
 
-    function checkScroll() {
-        productItems.forEach((item) => {
-            const rect = item.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.85) {
-                item.classList.add("show");
+    function fadeInOnScroll() {
+        fadeElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.9) {
+                element.classList.add("visible");
             }
         });
     }
 
-    window.addEventListener("scroll", checkScroll);
-    checkScroll(); // Gọi ngay khi load trang
+    window.addEventListener("scroll", fadeInOnScroll);
+    fadeInOnScroll(); // Gọi ngay khi tải trang để hiện các phần tử trong viewport
 });
-
 
 //BACK TO TOP BUTTON        
 
