@@ -57,7 +57,7 @@
     <section class="product-section">
         <h1 class="product-title">Redefining Men's Fashion</h1>
         <div class="product-gallery">
-            <div class="product-item">
+            <div class="product-item" data-id="1">
                 <img src="images/men/men-1.jpg" alt="Product 1" height="425px">
                 <div class="product-info">
                     <h4>Product 1</h4>
@@ -65,7 +65,7 @@
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
-            <div class="product-item">
+            <div class="product-item" data-id="1">
                 <img src="images/men/men-2.jpg" alt="Product 1" height="425px">
                 <div class="product-info">
                     <h4>Product 2</h4>
@@ -73,7 +73,7 @@
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
-            <div class="product-item">
+            <div class="product-item" data-id="1">
                 <img src="images/men/men-3.jpg" alt="Product 1" height="425px">
                 <div class="product-info">
                     <h4>Product 3</h4>
@@ -81,7 +81,7 @@
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
-            <div class="product-item">
+            <div class="product-item" data-id="1">
                 <img src="images/men/men-4.jpg" alt="Product 1" height="425px">
                 <div class="product-info">
                     <h4>Product 4</h4>
@@ -278,6 +278,26 @@
             </div>
         </div>
     </section>
+
+                    <!-- Modal hiển thị chi tiết sản phẩm -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="modal-product-image" src="" alt="Product Image">
+                <div class="modal-text">
+                    <h2 id="modal-product-name"></h2>
+                    <p id="modal-product-price"></p>
+                    <div id="modal-product-colors"></div>
+                    <div class="modal-buttons">
+                        <button class="btn btn-cart">Add to Cart</button>
+                        <button class="btn btn-buy">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
 
     <!-- FOOTER -->                         
     <footer id="footer" class="mt-5 bg-light">
