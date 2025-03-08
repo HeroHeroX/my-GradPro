@@ -23,8 +23,9 @@
             <a class="navbar-brand text-dark" href="index.html">
                 <img src="images/logo.png" alt="LaManch" class="logo" width="120">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <!-- Nút hamburger khi thu nhỏ màn hình -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> <!-- Biểu tượng 3 dấu gạch ngang -->
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav justify-content-center flex-grow-1 gap-1 gap-lg-6 pe-3">
@@ -34,15 +35,19 @@
                     <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
                 </ul>
                 <form class="d-flex align-items-center">
-                    <button class="btn btn-outline-custom me-1" type="button" id="search-icon">
+                    <button class="btn btn-outline-custom me-1" type="button" id="search-icon" aria-label="Search">
                         <i class="fas fa-magnifying-glass"></i>
                     </button>
-                    <button class="btn btn-outline-custom me-2" type="button">
-                        <i class="fas fa-shopping-cart"></i>
-                    </button>
-                    <button class="btn btn-outline-custom me-3" type="button">
-                        <i class="fas fa-user"></i>
-                    </button>
+                    <a href="login.html">
+                        <button class="btn btn-outline-custom me-2" type="button" aria-label="Cart">
+                          <i class="fas fa-shopping-cart"></i>
+                      </button>
+                    </a>
+                      <a href="login.html">
+                        <button class="btn btn-outline-custom me-3" type="button" aria-label="User">
+                          <i class="fas fa-user"></i>
+                      </button>
+                    </a>
                 </form>
             </div>
         </div>

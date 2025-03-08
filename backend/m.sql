@@ -95,3 +95,8 @@ Invoke-WebRequest -Uri "http://localhost:5000/orders" `
     -Headers @{"Content-Type"="application/json"; "Authorization"="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJuZ3V5ZW52YW5iQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzQxMzM0MTE1LCJleHAiOjE3NDEzMzc3MTV9.Ke8kCnOeoZsPQGFKf1Wp3gvcJeNU07Uo2kjlwCMAuvs"} `
     -Body $body `
     -UseBasicParsing
+
+
+
+cd D:\my-GradPro\backend
+node server.js

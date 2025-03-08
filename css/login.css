@@ -1,0 +1,227 @@
+body {
+    --heading-font: "Marcellus", Roboto, sans-serif;
+    --heading-font-weight: 400;
+    --heading-color: #111;
+    --heading-line-height: 1.24;
+  
+    --swiper-theme-color: #8C907E;
+  
+    /* bootstrap */
+    --bs-body-font-family: "Jost", Roboto, sans-serif;
+    --bs-body-font-size: 18px;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-body-color: #8f8f8f;
+    --bs-body-color-rgb: 143, 143, 143;
+  
+    --bs-primary: #8C907E;
+    --bs-secondary: #6c757d;
+    --bs-black: #111;
+    --bs-light: #F1F1F0;
+    --bs-dark: #212529;
+    --bs-gray: #9aa1a7;
+    --bs-gray-dark: #51565b;
+  
+    --bs-primary-rgb: 140, 144, 126;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-black-rgb: 17, 17, 17;
+    --bs-light-rgb: 241, 241, 240;
+    --bs-dark-rgb: 33, 37, 41;
+  
+    --bs-link-color: #111;
+    --bs-link-color-rgb: 17, 17, 17;
+    --bs-link-decoration: underline;
+    --bs-link-hover-color: #111;
+    --bs-link-hover-color-rgb: 17, 17, 17;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bs-light); /* Hoặc màu bạn muốn */
+}
+
+                                            /* NAVBAR */
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+.btn-outline-custom {
+    color: #6c757d;
+    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.btn-outline-custom:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+.navbar-nav > .nav-item:not(:last-child) {
+    margin-right: 50px;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+}
+
+@keyframes underline-appear {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.nav-link:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #6c757d;
+    transform: translateX(-50%);
+    animation: underline-appear 0.3s ease-out forwards;
+}
+
+                                /* SEARCH BAR */
+.search-container {
+    position: relative;
+    width: 100%;
+    background-color: var(--bs-light);
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.search-input {
+    width: calc(100% - 57px);
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 8px #8C907E;
+    border: 2px solid var(--bs-light);
+}
+
+.search-btn:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+
+/* FORM BOX */
+/* Căn giữa form */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: var(--bs-light);
+    position: relative;
+    width: 100%;
+}
+
+/* Thêm hiệu ứng chuyển đổi giữa hai form */
+.form-box {
+    position: absolute;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+.form-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    width: 380px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* TIÊU ĐỀ */
+.form-box h2 {
+    font-family: "Marcellus", serif;
+    color: var(--bs-black);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+/* INPUT */
+.form-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid var(--bs-gray);
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-box input:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 8px rgba(140, 144, 126, 0.5);
+    outline: none;
+}
+
+/* NÚT SUBMIT */
+.form-box button {
+    width: 100%;
+    padding: 14px;
+    background: var(--bs-primary);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.form-box button:hover {
+    background: var(--bs-gray-dark);
+    transform: scale(1.03);
+}
+
+/* CHUYỂN ĐỔI GIỮA ĐĂNG NHẬP & ĐĂNG KÝ */
+.form-box p {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--bs-gray-dark);
+}
+
+.form-box a {
+    color: var(--bs-primary);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+    color: var(--bs-gray-dark);
+}
+

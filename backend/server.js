@@ -384,7 +384,10 @@ app.put('/users/update', authenticateToken, (req, res) => {
     });
 });
 
-
+// Đăng xuất (Xóa token ở frontend)
+app.post("/users/logout", (req, res) => {
+    res.json({ message: "Đăng xuất thành công!" });
+});
 
 
 
