@@ -15,10 +15,11 @@ body {
     --bs-primary: #8C907E;
     --bs-secondary: #6c757d;
     --bs-black: #111;
-    --bs-light: #F1F1F0;
+    --bs-light:#DFDFDC;
     --bs-dark: #212529;
     --bs-gray: #9aa1a7;
     --bs-gray-dark: #51565b;
+    --bs-smoke: #F8F9FA;
 
     --bs-primary-rgb: 140, 144, 126;
     --bs-secondary-rgb: 108, 117, 125;
@@ -44,6 +45,9 @@ html {
   }
 
                                     /* NAVBAR */
+.navbar{
+    background-color: var(--bs-light);
+}
 .logo {
     width: 150px;
     height: auto;
@@ -95,6 +99,7 @@ html {
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    display: none;
 }
 
 .search-input {
@@ -118,6 +123,16 @@ html {
 }
 
 /* T-SHIRT */
+.product-section {
+    background-color: var(--bs-smoke);
+    margin: 0;
+    padding: 0;
+}
+
+.product-title {
+    margin-top: 0;
+    padding-top: 15px;
+}
 
 .product-gallery {
     display: grid;
@@ -128,7 +143,7 @@ html {
 }
 
 .product-item {
-    background: #F1F1F0;
+    background: var(--bs-light);
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
@@ -249,6 +264,9 @@ h1 {
 
 
                             /* FOOTER START */
+.footer{
+  background-color: var(--bs-light);  /* Màu nền của footer */
+}
 .footer-logo {
   width: 200px;  /* Điều chỉnh chiều rộng logo */
   height: auto;  /* Giữ tỷ lệ gốc của logo */
@@ -310,129 +328,6 @@ h1 {
 
 
 
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(17, 17, 17, 0.5); /* Màu nền tối hơn */
-}
-
-.modal-content {
-    background-color: var(--bs-light);
-    margin: 10% auto;
-    padding: 20px;
-    width: 60%;
-    height: auto;
-    border-radius: 10px;
-    position: relative;
-    font-family: var(--bs-body-font-family);
-    color: var(--bs-body-color);
-}
-
-@media (max-width: 768px) {
-    .modal-content {
-        width: 90%; /* Đảm bảo modal hiển thị tốt trên mobile */
-        padding: 20px;
-    }
-}
-
-                        /* Sắp xếp hình ảnh và nội dung */
-.modal-body {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.modal-body img {
-    max-width: 400px;
-    height: auto;
-    border-radius: 5px;
-}
-
-.modal-text {
-    flex-grow: 1;
-    text-align: left;
-}
-
-.modal-text h2 {
-    font-family: var(--heading-font);
-    font-size: 22px;
-    font-weight: var(--heading-font-weight);
-    color: var(--heading-color);
-}
-
-#modal-product-price {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--bs-primary);
-}
-
-#modal-product-colors span {
-    display: inline-block;
-    padding: 5px 12px;
-    margin: 5px;
-    border: 1px solid var(--bs-gray-dark);
-    border-radius: 5px;
-    cursor: pointer;
-    background: var(--bs-light);
-    color: var(--bs-black);
-    font-size: 16px;
-}
-
-#modal-product-colors span:hover {
-    background: var(--bs-primary);
-    color: var(--bs-light);
-}
-
-/* Nút bấm */
-.modal-buttons {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    padding: 12px 18px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    font-family: var(--bs-body-font-family);
-    transition: 0.3s;
-}
-
-.btn-cart {
-    background-color: var(--bs-primary);
-    color: var(--bs-light);
-}
-
-.btn-cart:hover {
-    background-color: var(--bs-dark);
-}
-
-.btn-buy {
-    background-color: var(--bs-black);
-    color: var(--bs-light);
-}
-
-.btn-buy:hover {
-    background-color: var(--bs-light);
-}
-
-/* Nút đóng */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-    color: var(--bs-black);
-}
 
 
 

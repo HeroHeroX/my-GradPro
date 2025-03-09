@@ -18,7 +18,7 @@
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light text-uppercase fs-6 p-3 border-bottom">
+    <nav class="navbar navbar-expand-lg navbar-light text-uppercase fs-6 p-3 border-bottom">
         <div class="container-fluid">
             <a class="navbar-brand text-dark" href="index.html">
                 <img src="images/logo.png" alt="LaManch" class="logo" width="120">
@@ -54,11 +54,11 @@
     </nav>
 
                                         <!-- SEARCH BAR -->
-    <div id="search-container" class="search-container" style="display: none;">
+    <div id="search-container" class="search-container">
         <input type="text" id="search-input" class="search-input" placeholder="Search...">
-        <button class="btn btn-outline-custom" type="button" id="search-icon1">
-            <i class="fas fa-magnifying-glass"></i>
-        </button>
+            <button class="btn btn-outline-custom" type="button" id="search-icon1" aria-label="Search">
+                <i class="fas fa-magnifying-glass"></i> <!-- Biểu tượng kính lúp -->
+            </button>
     </div>
 
     <div class="about-container fade-in">
@@ -121,8 +121,8 @@
         </div>
     </div>
 
-    <!-- FOOTER -->                         
-    <footer id="footer" class="mt-5 bg-light">
+        <!-- FOOTER -->                         
+    <footer id="footer" class="footer">
         <div class="container">
         <div class="row d-flex flex-wrap justify-content-between py-5">
             <div class="col-md-3 col-sm-6">
@@ -137,35 +137,35 @@
                 <div class="social-links">
                 <ul class="list-unstyled d-flex flex-wrap gap-3">
                     <li>
-                    <a href="#" class="text-secondary">
+                    <a href="#" class="text-secondary" title="Facebook">
                         <svg width="24" height="24" viewBox="0 0 24 24">
                         <use xlink:href="#facebook"></use>
                         </svg>
                     </a>
                     </li>
                     <li>
-                    <a href="#" class="text-secondary">
+                    <a href="#" class="text-secondary" title="Twitter">
                         <svg width="24" height="24" viewBox="0 0 24 24">
                         <use xlink:href="#twitter"></use>
                         </svg>
                     </a>
                     </li>
                     <li>
-                    <a href="#" class="text-secondary">
+                    <a href="#" class="text-secondary" title="Youtube">
                         <svg width="24" height="24" viewBox="0 0 24 24">
                         <use xlink:href="#youtube"></use>
                         </svg>
                     </a>
                     </li>
                     <li>
-                    <a href="#" class="text-secondary">
+                    <a href="#" class="text-secondary" title="Pinterest">
                         <svg width="24" height="24" viewBox="0 0 24 24">
                         <use xlink:href="#pinterest"></use>
                         </svg>
                     </a>
                     </li>
                     <li>
-                    <a href="#" class="text-secondary">
+                    <a href="#" class="text-secondary" title="Instagram">
                         <svg width="24" height="24" viewBox="0 0 24 24">
                         <use xlink:href="#instagram"></use>
                         </svg>

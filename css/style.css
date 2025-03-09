@@ -17,10 +17,11 @@ body {
     --bs-primary: #8C907E;
     --bs-secondary: #6c757d;
     --bs-black: #111;
-    --bs-light: #F1F1F0;
+    --bs-light: #DFDFDC;
     --bs-dark: #212529;
     --bs-gray: #9aa1a7;
     --bs-gray-dark: #51565b;
+    --bs-smoke: #F8F9FA;
   
     --bs-primary-rgb: 140, 144, 126;
     --bs-secondary-rgb: 108, 117, 125;
@@ -71,7 +72,9 @@ html{
                           /* SMOOTH SCROLLSCROLL END */
                             
                           /* NAVBAR DES */
-
+.navbar{
+    background-color: var(--bs-light); /* Màu nền navbar */
+}
 .logo {
     width: 150px;   
     height: auto;   
@@ -154,6 +157,7 @@ html{
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
     transition: all 0.3s ease-in-out; /* Hiệu ứng chuyển động mượt mà */
+    display: none;
 }
 
 /* Tạo border cho input tìm kiếm */
@@ -203,7 +207,7 @@ html{
                                 /* SWIPER BILLBOARD */
 /* Định dạng cơ bản */
 #billboard {
-  background-color: #f8f9fa; /* Màu nền sáng */
+  background-color: var(--bs-light); /* Màu nền sáng */
 }
 
 .section-title {
@@ -327,21 +331,28 @@ html{
                             /* SWIPER BILLBOARD END */
 
                                 /* FEATURE START */    
+.features {
+  background-color: var(--bs-smoke); /* Màu nền */
+}
 
 .features .text-center i {
   color: #6c757d; /* Màu xanh lá */
   transition: color 0.3s ease;
+  background-color: var(--bs-smoke); /* Màu nền */
 }
 
 .features h4 {
   font-family: var(--heading-font); /* Sử dụng font chữ chính */
   color: #333; /* Màu chữ chính */
-  margin-top: 20px;
 }
 
                             /* FEATURE END */
 
                             /* SHOP FOR COLLECTION */
+.categories{
+  background-color: var(--bs-smoke); /* Màu nền */
+  padding-bottom: 60px; /* Khoảng cách dưới */
+}
 
 .collection {
   position: relative;
@@ -351,7 +362,6 @@ html{
   font-family: var(--heading-font);
   font-size: 24px;
   color: var(--bs-secondary);
-  margin-bottom: -15px;
 }
 
 .image-holder {
@@ -449,8 +459,9 @@ html{
   font-family: var(--heading-font);
   font-size: 15px;
   color: var(--bs-secondary);
-  margin-top: 70px;
   text-align: left;
+  background-color: var(--bs-light);
+  margin-top: 0;
 }
 
 .season-collection h3 {
@@ -491,7 +502,17 @@ html{
 
                           /* SEASON COKLECTION END  */
 
+.logo-bar{
+  display: grid;
+  background-color: var(--bs-smoke);
+  height: 200px;
+  align-items: center;
+}
+
                             /* FOOTER START */
+.footer{
+  background-color: var(--bs-light); /* Màu nền của footer */
+}
 .footer-logo {
   width: 200px;  /* Điều chỉnh chiều rộng logo */
   height: auto;  /* Giữ tỷ lệ gốc của logo */

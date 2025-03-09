@@ -17,7 +17,7 @@ body {
     --bs-primary: #8C907E;
     --bs-secondary: #6c757d;
     --bs-black: #111;
-    --bs-light: #F1F1F0;
+    --bs-light: #DFDFDC;
     --bs-dark: #212529;
     --bs-gray: #9aa1a7;
     --bs-gray-dark: #51565b;
@@ -35,15 +35,10 @@ body {
     --bs-link-hover-color-rgb: 17, 17, 17;
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--bs-light); /* Hoặc màu bạn muốn */
-}
-
                                             /* NAVBAR */
+.navbar{
+    background-color: var(--bs-light);
+}                                            
 .logo {
     width: 150px;
     height: auto;
@@ -95,6 +90,7 @@ body, html {
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    display: none;
 }
 
 .search-input {
@@ -120,14 +116,15 @@ body, html {
 
 /* FORM BOX */
 /* Căn giữa form */
-.container {
+.form-box-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: var(--bs-light);
+    background: #F8F9FA;
     position: relative;
     width: 100%;
+    margin-bottom: none;
 }
 
 /* Thêm hiệu ứng chuyển đổi giữa hai form */
@@ -148,7 +145,7 @@ body, html {
     pointer-events: all;
 }
 .form-box {
-    background: white;
+    background: var(--bs-light);
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
@@ -209,7 +206,7 @@ body, html {
 /* CHUYỂN ĐỔI GIỮA ĐĂNG NHẬP & ĐĂNG KÝ */
 .form-box p {
     margin-top: 12px;
-    font-size: 14px;
+    font-size: 18px;
     color: var(--bs-gray-dark);
 }
 
@@ -225,3 +222,40 @@ body, html {
     color: var(--bs-gray-dark);
 }
 
+
+
+
+
+
+/* FOOTER START */
+.footer{
+  background-color: var(--bs-light);  /* Màu nền của footer */
+}
+.footer-logo {
+  width: 200px;  /* Điều chỉnh chiều rộng logo */
+  height: auto;  /* Giữ tỷ lệ gốc của logo */
+}
+
+/* Cấu hình ban đầu cho liên kết */
+.footer-menu .item-anchor {
+  text-decoration: none; /* Bỏ gạch chân mặc định */
+  color: #333; /* Màu liên kết mặc định */
+  position: relative; /* Để có thể sử dụng ::after */
+}
+
+/* Tạo hiệu ứng gạch chân từ trái sang phải */
+.footer-menu .item-anchor::after {
+  content: ""; /* Nội dung rỗng cho pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px; /* Độ dày của gạch chân */
+  background-color: var(--bs-secondary); /* Màu gạch chân */
+  transition: width 0.3s ease; /* Thời gian gạch chân xuất hiện */
+}
+
+/* Khi hover, gạch chân sẽ xuất hiện từ trái sang phải */
+.footer-menu .item-anchor:hover::after {
+  width: 100%; /* Kích thước của gạch chân khi hover */
+}

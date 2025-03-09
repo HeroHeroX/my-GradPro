@@ -15,7 +15,7 @@ body {
     --bs-primary: #8C907E;
     --bs-secondary: #6c757d;
     --bs-black: #111;
-    --bs-light: #F1F1F0;
+    --bs-light: #DFDFDC;
     --bs-dark: #212529;
     --bs-gray: #9aa1a7;
     --bs-gray-dark: #51565b;
@@ -42,6 +42,9 @@ body {
 }
 
                                         /* NAVBAR */
+.navbar{
+    background-color: var(--bs-light);
+}
 .logo {
     width: 150px;
     height: auto;
@@ -93,6 +96,7 @@ body {
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    display: none;
 }
 
 .search-input {
@@ -118,10 +122,11 @@ body {
                                         /* ABOUT US */
 
 .about-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: auto;
-    padding: 60px 20px;
+    padding: 60px;
     text-align: center;
+    background-color: #F8F9FA;
 }
 .about-title {
     font-family: var(--heading-font);
@@ -231,6 +236,10 @@ body {
 
 
 /* FOOTER START */
+.footer{
+  background-color: var(--bs-light);
+
+}
 .footer-logo {
   width: 200px;  /* Điều chỉnh chiều rộng logo */
   height: auto;  /* Giữ tỷ lệ gốc của logo */
