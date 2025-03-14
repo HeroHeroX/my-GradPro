@@ -384,6 +384,24 @@ app.put('/users/update', authenticateToken, (req, res) => {
     });
 });
 
+// API lấy thông tin người dùng
+app.get('/users/profile', authenticateToken, (req, res) => {
+    const user_id = req.user.id;
+
+    const sql = "SELECT id, name, email, role FROM users WHERE id = ?";
+    db.query(sql, [user_id], (err, result) => {
+        if (err) {
+            console.error("Lỗi lấy thông tin người dùng:", err);
+            return res.status(500).json({ error: "Lỗi server!" });
+        }
+        if (result.length === 0) {
+            return res.status(404).json({ error: "Không tìm thấy người dùng!" });
+        }
+        res.json(result[0]);
+    });
+});
+
+
 // Đăng xuất (Xóa token ở frontend)
 app.post("/users/logout", (req, res) => {
     res.json({ message: "Đăng xuất thành công!" });

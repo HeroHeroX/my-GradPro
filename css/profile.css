@@ -1,0 +1,230 @@
+body {
+    --heading-font: "Marcellus", Roboto, sans-serif;
+    --heading-font-weight: 400;
+    --heading-color: #111;
+    --heading-line-height: 1.24;
+
+    --swiper-theme-color: #8C907E;
+
+    --bs-body-font-family: "Jost", Roboto, sans-serif;
+    --bs-body-font-size: 18px;
+    --bs-body-font-weight: 400;
+    --bs-body-color: #8f8f8f;
+    --bs-body-color-rgb: 143, 143, 143;
+
+    --bs-primary: #8C907E;
+    --bs-secondary: #6c757d;
+    --bs-black: #111;
+    --bs-light:#DFDFDC;
+    --bs-dark: #212529;
+    --bs-gray: #9aa1a7;
+    --bs-gray-dark: #51565b;
+    --bs-smoke: #F8F9FA;
+
+    --bs-primary-rgb: 140, 144, 126;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-black-rgb: 17, 17, 17;
+    --bs-light-rgb: 241, 241, 240;
+    --bs-dark-rgb: 33, 37, 41;
+
+    --bs-link-color: #111;
+    --bs-link-color-rgb: 17, 17, 17;
+    --bs-link-decoration: underline;
+    --bs-link-hover-color: #111;
+    --bs-link-hover-color-rgb: 17, 17, 17;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+                                    /* NAVBAR */
+.navbar{
+    background-color: var(--bs-light);
+}
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+.btn-outline-custom {
+    color: #6c757d;
+    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.btn-outline-custom:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+.navbar-nav > .nav-item:not(:last-child) {
+    margin-right: 50px;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+}
+
+@keyframes underline-appear {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.nav-link:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #6c757d;
+    transform: translateX(-50%);
+    animation: underline-appear 0.3s ease-out forwards;
+}
+
+                                /* SEARCH BAR */
+.search-container {
+    position: relative;
+    width: 100%;
+    background-color: var(--bs-light);
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    display: none;
+}
+
+.search-input {
+    width: calc(100% - 57px);
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 8px #8C907E;
+    border: 2px solid var(--bs-light);
+}
+
+.search-btn:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+
+
+
+
+/* BODY - Đảm bảo footer nằm dưới cùng */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* MAIN CONTENT - Đẩy footer xuống dưới */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* PROFILE */
+.profile {
+    background: var(--bs-light);
+    border: 2px solid var(--bs-gray-dark);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 400px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: var(--bs-body-font-family);
+    color: var(--bs-black);
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+/* Giữ nguyên các phần còn lại */
+.profile h1 {
+    font-family: var(--heading-font);
+    color: var(--bs-primary);
+    font-weight: var(--heading-font-weight);
+    margin-bottom: 20px;
+}
+
+.profile p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: var(--bs-body-color);
+}
+
+.profile strong {
+    color: var(--bs-black);
+}
+
+.profile button {
+    background: var(--bs-primary);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 20px;
+}
+
+.profile button:hover {
+    background: var(--bs-gray-dark);
+    transform: translateY(-2px);
+}
+
+
+
+
+                            /* FOOTER START */
+.footer{
+  background-color: var(--bs-light); /* Màu nền của footer */
+}
+.footer-logo {
+  width: 200px;  /* Điều chỉnh chiều rộng logo */
+  height: auto;  /* Giữ tỷ lệ gốc của logo */
+}
+
+/* Cấu hình ban đầu cho liên kết */
+.footer-menu .item-anchor {
+  text-decoration: none; /* Bỏ gạch chân mặc định */
+  color: #333; /* Màu liên kết mặc định */
+  position: relative; /* Để có thể sử dụng ::after */
+}
+
+/* Tạo hiệu ứng gạch chân từ trái sang phải */
+.footer-menu .item-anchor::after {
+  content: ""; /* Nội dung rỗng cho pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px; /* Độ dày của gạch chân */
+  background-color: var(--bs-secondary); /* Màu gạch chân */
+  transition: width 0.3s ease; /* Thời gian gạch chân xuất hiện */
+}
+
+/* Khi hover, gạch chân sẽ xuất hiện từ trái sang phải */
+.footer-menu .item-anchor:hover::after {
+  width: 100%; /* Kích thước của gạch chân khi hover */
+}

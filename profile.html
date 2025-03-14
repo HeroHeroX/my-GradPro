@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Profile | LaManch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Marcellus&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="css/login.css">
-    <script src="js/login.js" defer></script> 
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
-                                        <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light text-uppercase fs-6 p-3 border-bottom align-items-center">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light text-uppercase fs-6 p-3 border-bottom">
         <div class="container-fluid">
             <a class="navbar-brand text-dark" href="index.html">
-                <img src="images/logo.png" alt="LaMancha" class="logo" width="120">
+                <img src="images/logo.png" alt="LaManch" class="logo" width="120">
             </a>
             <!-- Nút hamburger khi thu nhỏ màn hình -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link" href="accessories.html">Accessories</a></li>
                     <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
                 </ul>
-                <form class="d-flex align-items-center" role="search">
+                <form class="d-flex align-items-center">
                     <button class="btn btn-outline-custom me-1" type="button" id="search-icon" aria-label="Search">
                         <i class="fas fa-magnifying-glass"></i>
                     </button>
@@ -54,6 +49,7 @@
         </div>
     </nav>
 
+                                        <!-- SEARCH BAR -->
     <!-- Thanh tìm kiếm (ẩn mặc định) -->
     <div id="search-container" class="search-container">
         <input type="text" id="search-input" class="search-input" placeholder="Search...">
@@ -61,42 +57,23 @@
                 <i class="fas fa-magnifying-glass"></i> <!-- Biểu tượng kính lúp -->
             </button>
     </div>
-                            <!-- NAVBAR END-->
-
-
-
-
-
-    <div class="form-box-container">
-        <div class="form-box from-container" id="loginBox">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <input type="email" id="loginEmail" placeholder="Email" required>
-                <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <p>Don't have an account?<a href="#" onclick="showRegister()">Register</a></p>
-            </form>
-        </div>
-
-        <div class="form-box hidden" id="registerBox">
-            <h2>Register</h2>
-            <form id="registerForm">
-                <input type="text" id="registerName" placeholder="Name" required>
-                <input type="email" id="registerEmail" placeholder="Email" required>
-                <input type="password" id="registerPassword" placeholder="Password" required>
-                <button type="submit">Register</button>
-                <p>Already have an account? <a href="#" onclick="showLogin()">Log in</a></p>
-            </form>
-        </div>
-    </div>
     
-    <button id="logout-btn">Log out</button>
 
 
 
 
 
+    <div class="main-content">
+        <div class="profile">
+          <h1>Personal Information</h1>
+          <p><strong>Name:</strong> <span id="user-name"></span></p>
+          <p><strong>Email:</strong> <span id="user-email"></span></p>
+          <p><strong>Role:</strong> <span id="user-role"></span></p>
+          <button onclick="logout()">Log Out</button>
+        </div>
+      </div>
     
+
     <!-- FOOTER -->                         
     <footer id="footer" class="footer">
         <div class="container">
@@ -232,5 +209,12 @@
         </div>
         </div>
     </footer>
+
+
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/profile.js"></script>
 </body>
 </html>

@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
             alert("Đăng nhập thành công!");
-            window.location.href = "index.html"; // Chuyển về trang chủ sau khi đăng nhập
+            window.location.href = "profile.html"; // Chuyển về trang chủ sau khi đăng nhập
         } else {
             alert(data.error);
         }
