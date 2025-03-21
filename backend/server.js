@@ -9,9 +9,12 @@ const bcrypt = require('bcryptjs'); // Import bcrypt để mã hóa mật khẩu
 const jwt = require('jsonwebtoken'); // Import JWT để tạo token
 const SECRET_KEY = "Lecongduy25042001!"; // Đặt một khóa bí mật (có thể lưu vào .env sau)
 
+const path = require('path');
+
 // Cấu hình CORS để cho phép frontend kết nối
 app.use(cors());
 app.use(express.json()); // Hỗ trợ JSON trong request
+app.use('/images', express.static(path.join(__dirname, '..', 'images')));
 
 // Kết nối đến MySQL
 const db = mysql.createConnection({
@@ -24,9 +27,9 @@ const db = mysql.createConnection({
 // Kiểm tra kết nối
 db.connect(err => {
     if (err) {
-        console.error('❌ Lỗi kết nối MySQL:', err);
+        console.error('❌MySQL connection erros:', err);
     } else {
-        console.log('✅ Kết nối MySQL thành công!');
+        console.log('✅MySQL connected successfully!');
     }
 });
 
@@ -36,12 +39,12 @@ const authenticateToken = (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1]; // Lấy token từ header
 
     if (!token) {
-        return res.status(401).json({ error: "Bạn cần đăng nhập để truy cập!" });
+        return res.status(401).json({ error: "You need login to access!" });
     }
 
     jwt.verify(token, SECRET_KEY, (err, user) => {
         if (err) {
-            return res.status(403).json({ error: "Token không hợp lệ!" });
+            return res.status(403).json({ error: "Invalid Token!" });
         }
         req.user = user; // Lưu thông tin user vào request để sử dụng trong các API khác
         next();
@@ -52,10 +55,10 @@ const authenticateToken = (req, res, next) => {
 function checkRole(...roles) {
     return (req, res, next) => {
         if (!req.user) {
-            return res.status(401).json({ error: "Bạn chưa đăng nhập!" });
+            return res.status(401).json({ error: "You have not login yet!" });
         }
         if (!roles.includes(req.user.role)) {
-            return res.status(403).json({ error: "Bạn không có quyền truy cập!" });
+            return res.status(403).json({ error: "Permission restricted!" });
         }
         next();
     };
@@ -72,13 +75,14 @@ app.get('/products', (req, res) => {
     const sql = 'SELECT * FROM products';
     db.query(sql, (err, results) => {
         if (err) {
-            console.error('Lỗi lấy sản phẩm:', err);
-            res.status(500).json({ error: 'Lỗi server' });
+            console.error('Product error:', err);
+            res.status(500).json({ error: 'Server error' });
         } else {
             res.json(results);
         }
     });
 });
+
 
 // API lấy thông tin chi tiết sản phẩm theo ID
 app.get('/products/:id', (req, res) => {
@@ -173,39 +177,6 @@ app.post('/cart/add', (req, res) => {
     });
 });
 
-
-// API lấy giỏ hàng của user
-app.post('/cart/add', authenticateToken, (req, res) => {
-    const { product_id, quantity } = req.body;
-    const user_id = req.user.id; // Lấy user_id từ token đã xác thực
-
-    // Kiểm tra đầu vào
-    if (!product_id || !quantity || quantity <= 0 || !Number.isInteger(quantity)) {
-        return res.status(400).json({ error: "Số lượng không hợp lệ!" });
-    }
-
-    const sql = `
-        INSERT INTO cart (user_id, product_id, quantity) 
-        VALUES (?, ?, ?) 
-        ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)`;
-
-    db.query(sql, [user_id, product_id, quantity], (err, result) => {
-        if (err) {
-            console.error('Lỗi thêm vào giỏ hàng:', err);
-            return res.status(500).json({ error: 'Lỗi server' });
-        }
-
-        // Lấy số lượng mới
-        db.query("SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?", [user_id, product_id], (err, rows) => {
-            if (err) {
-                console.error('Lỗi lấy số lượng:', err);
-                return res.status(500).json({ error: 'Lỗi server' });
-            }
-            res.json({ message: "Thêm vào giỏ hàng thành công!", new_quantity: rows[0].quantity });
-        });
-    });
-});
-
 // API xóa sản phẩm khỏi giỏ hàng
 app.delete('/cart/:user_id/:product_id', (req, res) => {
     const { user_id, product_id } = req.params;
@@ -257,6 +228,24 @@ app.put('/cart/:user_id/:product_id', (req, res) => {
     }
 });
 
+// API lấy giỏ hàng của user
+app.get('/cart/:user_id', (req, res) => {
+    const { user_id } = req.params;
+    const sql = `
+        SELECT c.product_id, c.quantity, p.name, p.price, p.image 
+        FROM cart c
+        JOIN products p ON c.product_id = p.id
+        WHERE c.user_id = ?`;
+
+    db.query(sql, [user_id], (err, results) => {
+        if (err) {
+            console.error('Lỗi lấy giỏ hàng:', err);
+            return res.status(500).json({ error: 'Lỗi server' });
+        }
+        res.json(results);
+    });
+});
+
 
 
 
@@ -270,7 +259,7 @@ app.post('/register', async (req, res) => {
 
     // Kiểm tra xem có thiếu thông tin không
     if (!name || !email || !password) {
-        return res.status(400).json({ error: "Vui lòng điền đầy đủ thông tin!" });
+        return res.status(400).json({ error: "Please fill in the blank!" });
     }
 
     // Chuẩn hóa email (xóa khoảng trắng, chuyển về chữ thường)
@@ -279,14 +268,14 @@ app.post('/register', async (req, res) => {
     // Kiểm tra email có hợp lệ không (định dạng email)
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(emailTrimmed)) {
-        return res.status(400).json({ error: "Email không hợp lệ!" });
+        return res.status(400).json({ error: "Invalid Email!" });
     }
 
     // Kiểm tra độ mạnh của mật khẩu (ít nhất 6 ký tự, 1 chữ hoa, 1 số)
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
     if (!passwordRegex.test(password)) {
         return res.status(400).json({ 
-            error: "Mật khẩu phải có ít nhất 6 ký tự, bao gồm ít nhất 1 chữ hoa và 1 số!"
+            error: "Password must have as least 6 Characters, 1 Uppercase letters, 1 Number!"
         });
     }
 
@@ -299,7 +288,7 @@ app.post('/register', async (req, res) => {
                 return res.status(500).json({ error: "Lỗi server!" });
             }
             if (result.length > 0) {
-                return res.status(400).json({ error: "Email đã được sử dụng!" });
+                return res.status(400).json({ error: "This Email was already registered!" });
             }
 
             // Mã hóa mật khẩu
@@ -312,7 +301,7 @@ app.post('/register', async (req, res) => {
                     console.error("Lỗi đăng ký:", err);
                     return res.status(500).json({ error: "Lỗi server!" });
                 }
-                res.json({ message: "Đăng ký thành công!" });
+                res.json({ message: "Register successfully!" });
             });
         });
     } catch (err) {
@@ -326,7 +315,7 @@ app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).json({ error: "Vui lòng nhập email và mật khẩu!" });
+        return res.status(400).json({ error: "Please fill in the blank!" });
     }
 
     try {
@@ -339,7 +328,7 @@ app.post('/login', async (req, res) => {
             }
 
             if (result.length === 0) {
-                return res.status(400).json({ error: "Email không tồn tại!" });
+                return res.status(400).json({ error: "This Email is not exsisted!" });
             }
 
             const user = result[0]; // Lấy user từ database
@@ -347,13 +336,13 @@ app.post('/login', async (req, res) => {
             // So sánh mật khẩu nhập vào với mật khẩu đã mã hóa
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                return res.status(400).json({ error: "Mật khẩu không chính xác!" });
+                return res.status(400).json({ error: "Invalid password!" });
             }
 
             // Tạo token JWT cho người dùng
             const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
 
-            res.json({ message: "Đăng nhập thành công!", token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+            res.json({ message: "Login successfully!", token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
         });
     } catch (err) {
         console.error(err);
@@ -404,7 +393,7 @@ app.get('/users/profile', authenticateToken, (req, res) => {
 
 // Đăng xuất (Xóa token ở frontend)
 app.post("/users/logout", (req, res) => {
-    res.json({ message: "Đăng xuất thành công!" });
+    res.json({ message: "Log out successfully!" });
 });
 
 
@@ -477,6 +466,6 @@ app.get('/orders/:user_id', (req, res) => {
 
 // Khởi động server
 app.listen(PORT, () => {
-    console.log(`🚀 Server đang chạy tại http://localhost:${PORT}`);
+    console.log(`🚀 Server is running at http://localhost:${PORT}`);
 });
 // Đây là file server.js, chứa mã nguồn của server Express.js. Trong file này, chúng ta đã cấu hình kết nối đến MySQL và viết các API để thực hiện các thao tác CRUD với bảng products trong MySQL.

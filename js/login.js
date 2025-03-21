@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
         if (response.ok) {
-            alert("Đăng ký thành công! Hãy đăng nhập.");
+            alert("Register successfully!");
             showLogin();
         } else {
             alert(data.error);
@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
-            alert("Đăng nhập thành công!");
-            window.location.href = "profile.html"; // Chuyển về trang chủ sau khi đăng nhập
+            alert("Login successfully!");
+            window.location.href = "index.html"; // Chuyển về trang chủ sau khi đăng nhập
         } else {
             alert(data.error);
         }
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        alert("Bạn đã đăng xuất!");
+        alert("Log out successfully!");
         window.location.href = "login.html"; // Quay lại trang đăng nhập
     });
 

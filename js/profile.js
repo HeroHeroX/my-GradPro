@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!token || !user) {
-        alert("Bạn chưa đăng nhập!");
+        alert("You have not login yet!");
         window.location.href = "login.html";
         return;
     }
