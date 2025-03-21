@@ -2,16 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
 
-    if (!token || !user) {
-        alert("You have not login yet!");
-        window.location.href = "login.html";
-        return;
-    }
 
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
     addToCartButtons.forEach(button => {
         button.addEventListener('click', (e) => {
+
+            if (!token || !user) {
+                alert("You have not login yet!");
+                return;
+            }
+
             const productId = e.target.closest('.product-item').getAttribute('data-id');
 
             fetch(`http://localhost:5000/cart/add`, {
