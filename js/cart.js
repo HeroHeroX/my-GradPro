@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -16,8 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    function renderCart() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    async function fetchCart() {
+        try {
+            const response = await fetch(`http://localhost:5000/cart/${user.id}`);
+            if (!response.ok) throw new Error("Failed to fetch cart");
+            const cart = await response.json();
+            renderCart(cart);
+        } catch (error) {
+            console.error("Error fetching cart:", error);
+        }
+    }
+
+    function renderCart(cart) {
         cartItemsContainer.innerHTML = "";
         let total = 0;
 
@@ -42,9 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const increaseBtn = template.querySelector('.increase-btn');
             const deleteBtn = template.querySelector('.delete-btn');
 
-            decreaseBtn.onclick = () => updateQuantity(item.id, item.quantity - 1);
-            increaseBtn.onclick = () => updateQuantity(item.id, item.quantity + 1);
-            deleteBtn.onclick = () => deleteItem(item.id);
+            decreaseBtn.onclick = () => updateQuantity(item.product_id, item.quantity - 1);
+            increaseBtn.onclick = () => updateQuantity(item.product_id, item.quantity + 1);
+            deleteBtn.onclick = () => deleteItem(item.product_id);
 
             cartItemsContainer.appendChild(template);
         });
@@ -52,27 +62,27 @@ document.addEventListener("DOMContentLoaded", () => {
         cartTotal.textContent = `$${total.toFixed(2)}`;
     }
 
-    function updateQuantity(productId, newQuantity) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const itemIndex = cart.findIndex(item => item.id === productId);
-
-        if (itemIndex > -1) {
-            if (newQuantity <= 0) {
-                cart.splice(itemIndex, 1);
-            } else {
-                cart[itemIndex].quantity = newQuantity;
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            renderCart();
+    async function updateQuantity(productId, newQuantity) {
+        try {
+            await fetch(`http://localhost:5000/cart/${user.id}/${productId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quantity: newQuantity })
+            });
+            fetchCart();
+        } catch (error) {
+            console.error("Error updating quantity:", error);
         }
     }
 
-    function deleteItem(productId) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart = cart.filter(item => item.id !== productId);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCart();
+    async function deleteItem(productId) {
+        try {
+            await fetch(`http://localhost:5000/cart/${user.id}/${productId}`, { method: 'DELETE' });
+            fetchCart();
+        } catch (error) {
+            console.error("Error deleting item:", error);
+        }
     }
 
-    renderCart();
+    fetchCart();
 });

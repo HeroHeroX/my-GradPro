@@ -15,6 +15,7 @@ const path = require('path');
 app.use(cors());
 app.use(express.json()); // Hỗ trợ JSON trong request
 app.use('/images', express.static(path.join(__dirname, '..', 'images')));
+app.use(express.static(path.join(__dirname, '..')));
 
 // Kết nối đến MySQL
 const db = mysql.createConnection({

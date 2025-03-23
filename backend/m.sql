@@ -98,5 +98,155 @@ Invoke-WebRequest -Uri "http://localhost:5000/orders" `
 
 
 
+
+
+
+
+//USERS
+// API đăng kí
+app.post('/register', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    // Kiểm tra xem có thiếu thông tin không
+    if (!name || !email || !password) {
+        return res.status(400).json({ error: "Please fill in the blank!" });
+    }
+
+    // Chuẩn hóa email (xóa khoảng trắng, chuyển về chữ thường)
+    const emailTrimmed = email.trim().toLowerCase();
+
+    // Kiểm tra email có hợp lệ không (định dạng email)
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(emailTrimmed)) {
+        return res.status(400).json({ error: "Invalid Email!" });
+    }
+
+    // Kiểm tra độ mạnh của mật khẩu (ít nhất 6 ký tự, 1 chữ hoa, 1 số)
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    if (!passwordRegex.test(password)) {
+        return res.status(400).json({ 
+            error: "Password must have as least 6 Characters, 1 Uppercase letters, 1 Number!"
+        });
+    }
+
+    try {
+        // Kiểm tra email đã tồn tại chưa
+        const checkEmail = "SELECT * FROM users WHERE email = ?";
+        db.query(checkEmail, [emailTrimmed], async (err, result) => {
+            if (err) {
+                console.error("Lỗi kiểm tra email:", err);
+                return res.status(500).json({ error: "Lỗi server!" });
+            }
+            if (result.length > 0) {
+                return res.status(400).json({ error: "This Email was already registered!" });
+            }
+
+            // Mã hóa mật khẩu
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            // Lưu user vào database
+            const sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+            db.query(sql, [name, emailTrimmed, hashedPassword], (err, result) => {
+                if (err) {
+                    console.error("Lỗi đăng ký:", err);
+                    return res.status(500).json({ error: "Lỗi server!" });
+                }
+                res.json({ message: "Register successfully!" });
+            });
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Lỗi server!" });
+    }
+});
+
+// API đăng nhập
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ error: "Please fill in the blank!" });
+    }
+
+    try {
+        // Kiểm tra xem email có tồn tại không
+        const sql = "SELECT * FROM users WHERE email = ?";
+        db.query(sql, [email], async (err, result) => {
+            if (err) {
+                console.error("Lỗi đăng nhập:", err);
+                return res.status(500).json({ error: "Lỗi server!" });
+            }
+
+            if (result.length === 0) {
+                return res.status(400).json({ error: "This Email is not exsisted!" });
+            }
+
+            const user = result[0]; // Lấy user từ database
+
+            // So sánh mật khẩu nhập vào với mật khẩu đã mã hóa
+            const isMatch = await bcrypt.compare(password, user.password);
+            if (!isMatch) {
+                return res.status(400).json({ error: "Invalid password!" });
+            }
+
+            // Tạo token JWT cho người dùng
+            const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
+
+            res.json({ message: "Login successfully!", token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Lỗi server!" });
+    }
+});
+
+// API cap nhat thông tin user
+app.put('/users/update', authenticateToken, (req, res) => {
+    const { name, email, password } = req.body;
+    const user_id = req.user.id;
+
+    let sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+    let values = [name, email, user_id];
+
+    if (password) {
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        sql = "UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?";
+        values = [name, email, hashedPassword, user_id];
+    }
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Lỗi cập nhật thông tin:", err);
+            return res.status(500).json({ error: "Lỗi server" });
+        }
+        res.json({ message: "Cập nhật thông tin thành công!" });
+    });
+});
+
+// API lấy thông tin người dùng
+app.get('/users/profile', authenticateToken, (req, res) => {
+    const user_id = req.user.id;
+
+    const sql = "SELECT id, name, email, role FROM users WHERE id = ?";
+    db.query(sql, [user_id], (err, result) => {
+        if (err) {
+            console.error("Lỗi lấy thông tin người dùng:", err);
+            return res.status(500).json({ error: "Lỗi server!" });
+        }
+        if (result.length === 0) {
+            return res.status(404).json({ error: "Không tìm thấy người dùng!" });
+        }
+        res.json(result[0]);
+    });
+});
+
+
+// Đăng xuất (Xóa token ở frontend)
+app.post("/users/logout", (req, res) => {
+    res.json({ message: "Log out successfully!" });
+});
+
+
+
 cd D:\my-GradPro\backend
 node server.js
